@@ -30,8 +30,11 @@
     <section class="col-9">
       <div class="d-flex justify-content-between align-items-center pb-1">
 
-        <app-paging-header [totalCount]="totalCount" [pageSize]="shopParams.pageSize"
-          [pageNumber]="shopParams.pageNumber"></app-paging-header>
+        <app-paging-header
+          [totalCount]="totalCount"
+          [pageSize]="shopParams.pageSize"
+          [pageNumber]="shopParams.pageNumber">
+        </app-paging-header>
 
         <div class="form-inline" *ngIf="products">
           <input (keyup.enter)="onSearch()" class="form-control" #search style="width: 300px" placeholder="Search"
@@ -48,7 +51,10 @@
       </div>
 
       <div class="d-flex justify-content-center" *ngIf="totalCount > shopParams.pageSize">
-        <app-pager [pageSize]="shopParams.pageSize" [totalCount]="totalCount" (pageChanged)="onPageChanged($event)">
+        <app-pager
+          [pageSize]="shopParams.pageSize"
+          [totalCount]="totalCount"
+          (pageChanged)="onPageChanged($event)">
         </app-pager>
       </div>
 

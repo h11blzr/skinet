@@ -1,0 +1,82 @@
+<div class="container mt-3">
+
+  <div class="d-flex justify-content-between align-items-center">
+    <app-paging-header [totalCount]="totalCount" [pageSize]="ordersListParams.pageSize"
+      [pageNumber]="ordersListParams.pageNumber">
+    </app-paging-header>
+
+    <div class="form-inline" *ngIf="orders">
+      <input (keyup.enter)="onSearch()" class="form-control" #search style="width: 300px"
+        placeholder="Search by shipping address" type="text">
+      <button (click)="onSearch()" class="btn btn-outline-primary ml-2 my-2">Search</button>
+      <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="totalCount > 0">
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-light text-uppercase text-center">
+          <tr>
+            <th class="align-middle border-0">
+              <div class="d-flex justify-content-between align-items-center p-2 px-3">
+                <div style="cursor: pointer;" (click)="sortSelected('orderDate')">Order Date</div>
+                <i class="fa fa-sort" style="cursor: pointer;" (click)="sortSelected('orderDate')"></i>
+              </div>
+            </th>
+            <th class="align-middle border-0">
+              <div class="p-2 px-3">Shipping Address</div>
+            </th>
+            <th class="align-middle border-0">
+              <div class="p-2 px-3">Delivery Time</div>
+            </th>
+            <th class="align-middle border-0">
+              <div class="d-flex justify-content-between align-items-center p-2 px-3">
+                <div style="cursor: pointer;" (click)="sortSelected('totalCost')">Total Cost</div>
+                <i class="fa fa-sort" style="cursor: pointer;" (click)="sortSelected('totalCost')"></i>
+              </div>
+            </th>
+            <th class="align-middle border-0">
+              <div class="p-2 px-3">Status</div>
+            </th>
+            <th class="align-middle border-0">
+              <div class="p-2 px-3">Detailed</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let item of orders">
+            <td class="align-middle">{{item.orderDateFormatted}}</td>
+            <td class="align-middle">
+              <div class="align-middle">
+                <div>{{item.shipToAddress.zipcode}}, {{item.shipToAddress.state}}, {{item.shipToAddress.city}},
+                  {{item.shipToAddress.street}}</div>
+                <div>Recipient: {{item.shipToAddress.firstName}} {{item.shipToAddress.lastName}}</div>
+              </div>
+            </td>
+            <td class="align-middle">{{item.deliveryTime}}</td>
+            <td class="align-middle">{{item.total | currency}}</td>
+            <td class="align-middle">{{item.status}}</td>
+            <td class="align-middle">
+              <a routerLink="/orders/{{item.id}}">
+                <i class="fa fa-info-circle" style="cursor: pointer; font-size: 1.5em;"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-center" *ngIf="totalCount > ordersListParams.pageSize">
+        <app-pager [pageSize]="ordersListParams.pageSize" [totalCount]="totalCount"
+          (pageChanged)="onPageChanged($event)">
+        </app-pager>
+      </div>
+
+    </div>
+  </ng-container>
+  <ng-container *ngIf="totalCount === 0">
+    <h5 class="text-center pt-5">There are no orders</h5>
+  </ng-container>
+</div>

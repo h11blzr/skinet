@@ -10,8 +10,10 @@ export interface IOrder {
   id: number
   buyerEmail: string
   orderDate: string
+  orderDateFormatted: string
   shipToAddress: IAddress
   deliveryMethod: string
+  deliveryTime: string
   shippingPrice: number
   orderItems: IOrderItem[]
   subtotal: number

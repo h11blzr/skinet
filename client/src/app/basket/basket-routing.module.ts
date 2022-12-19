@@ -3,7 +3,7 @@ import { BasketComponent } from './basket.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', component: BasketComponent}
+  { path: '', component: BasketComponent }
 ];
 
 @NgModule({

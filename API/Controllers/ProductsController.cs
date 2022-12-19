@@ -5,9 +5,7 @@ using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specification;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -19,12 +17,12 @@ namespace API.Controllers
         private readonly IMapper _mapper;
 
         public ProductsController(IGenericRepo<Product> productsRepo,
-                                IGenericRepo<ProductBrand> productBrandRwepo,
-                                IGenericRepo<ProductType> productTypeRepo,
-                                IMapper mapper)
+                                  IGenericRepo<ProductBrand> productBrandRepo,
+                                  IGenericRepo<ProductType> productTypeRepo,
+                                  IMapper mapper)
         {
             _productsRepo = productsRepo;
-            _productBrandRepo = productBrandRwepo;
+            _productBrandRepo = productBrandRepo;
             _productTypeRepo = productTypeRepo;
             _mapper = mapper;
         }
