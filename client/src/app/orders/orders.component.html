@@ -5,17 +5,15 @@
       [pageNumber]="ordersListParams.pageNumber">
     </app-paging-header>
 
-    <div class="form-inline" *ngIf="orders">
-      <input (keyup.enter)="onSearch()" class="form-control" #search style="width: 300px"
+    <div class="d-flex" *ngIf="orders">
+      <input (keyup.enter)="onSearch()" class="form-control ms-2 my-2" #search style="width: 300px"
         placeholder="Search by shipping address" type="text">
-      <button (click)="onSearch()" class="btn btn-outline-primary ml-2 my-2">Search</button>
-      <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
+      <button (click)="onSearch()" class="btn btn-outline-primary ms-2 my-2">Search</button>
+      <button (click)="onReset()" class="btn btn-outline-success ms-2 my-2">Reset</button>
     </div>
   </div>
 
-
   <ng-container *ngIf="totalCount > 0">
-
     <div class="table-responsive">
       <table class="table">
         <thead class="bg-light text-uppercase text-center">
@@ -73,10 +71,11 @@
           (pageChanged)="onPageChanged($event)">
         </app-pager>
       </div>
-
     </div>
   </ng-container>
+
   <ng-container *ngIf="totalCount === 0">
     <h5 class="text-center pt-5">There are no orders</h5>
   </ng-container>
+
 </div>
